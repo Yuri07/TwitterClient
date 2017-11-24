@@ -1,0 +1,22 @@
+<resources>
+    <!-- Como esta no site https://dev.twitter.com/twitterkit/android/installation
+    <resources>
+        <string android:name="com.twitter.sdk.android.CONSUMER_KEY">XXXXXXXXXXX</string>
+        <string android:name="com.twitter.sdk.android.CONSUMER_SECRET">XXXXXXXXXXX</string>
+    </resources>
+    -->
+
+    <string name="app_name">TwiterClient</string>
+    <!--<string name="com.twitter.sdk.android.CONSUMER_KEY">igdFUDjys6fkJQWt2TjJyc0zt</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">jheZ3WSbY3osM8zY2sBENqADyWQ60nuUl1XH1z4yCgJkYbvcKi</string>-->
+
+    <string name="login.error.message">Impossível iniciar sessão %s</string>
+    <string name="main.header.images">Imagens</string>
+    <string name="main.header.hashtags">Hashtags</string>
+    <string name="main.menu.action.logout">Fechar sessão</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_images_fragment">Hello images fragment</string>
+    <string name="hello_hashtags_fragment">Hello hashtags fragment</string>
+
+</resources>
