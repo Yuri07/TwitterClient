@@ -21,7 +21,7 @@ public class GlideImageLoader implements ImageLoader {
     }
 
     @Override
-    public void Load(ImageView imageView, String URL) {
+    public void load(ImageView imageView, String URL) {
         glideRequestManager
                 .load(URL)
                 .into(imageView);

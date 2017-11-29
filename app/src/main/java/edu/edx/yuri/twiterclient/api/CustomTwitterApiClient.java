@@ -16,7 +16,7 @@ public class CustomTwitterApiClient extends TwitterApiClient {
     /**
      * Provide CustomService with defined endpoints
      */
-    public TimeLineService getCustomService() {
+    public TimeLineService getTimelineService() {
         return getService(TimeLineService.class);
     }
 

@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 import edu.edx.yuri.twiterclient.LoginActivity;
 import edu.edx.yuri.twiterclient.R;
 import edu.edx.yuri.twiterclient.hashtags.HashtagsFragment;
-import edu.edx.yuri.twiterclient.images.ImagesFragment;
+import edu.edx.yuri.twiterclient.images.ui.ImagesFragment;
 import edu.edx.yuri.twiterclient.main.ui.adpaters.MainSectionsPageAdapter;
 
 import static java.lang.String.valueOf;
