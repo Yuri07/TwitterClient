@@ -43,6 +43,7 @@ public class ImagesPresenterImpl implements ImagesPresenter {
 
     @Override
     public void getImagesTweets() {
+        //imagesView.onError("Teste");
         if(imagesView!=null){
             imagesView.hideImages();
             imagesView.showProgress();
@@ -54,6 +55,9 @@ public class ImagesPresenterImpl implements ImagesPresenter {
     @Subscribe
     public void onEventMainThread(ImagesEvent event) {
         String errorMsg = event.getError();
+
+        //imagesView.onError("Test pos");
+
         if(imagesView!=null){
             imagesView.showImages();
             imagesView.hideProgress();

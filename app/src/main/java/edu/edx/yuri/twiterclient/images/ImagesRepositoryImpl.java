@@ -74,6 +74,7 @@ public class ImagesRepositoryImpl implements ImagesRepository {
         client.getTimelineService().homeTimeline(TWEET_COUNT,true, true,
                                                 true, true, callback);*/
 
+        //post("teste pos");
 
         Call<List<Tweet>> c = client.getTimelineService().homeTimeline(TWEET_COUNT,
                 true, true,
@@ -116,6 +117,15 @@ public class ImagesRepositoryImpl implements ImagesRepository {
                 post(exception.getLocalizedMessage());
             }
         });
+
+        /*try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }*/
+
+        //post("teste pos");
 
     }
 

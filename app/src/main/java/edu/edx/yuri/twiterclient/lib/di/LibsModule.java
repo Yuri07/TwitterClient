@@ -6,11 +6,15 @@ import android.support.v4.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
+import com.twitter.sdk.android.core.Session;
+import com.twitter.sdk.android.core.TwitterCore;
+import com.twitter.sdk.android.core.TwitterSession;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import edu.edx.yuri.twiterclient.api.CustomTwitterApiClient;
 import edu.edx.yuri.twiterclient.lib.GlideImageLoader;
 import edu.edx.yuri.twiterclient.lib.GreenRobotEventBus;
 import edu.edx.yuri.twiterclient.lib.base.EventBus;
@@ -56,6 +60,18 @@ public class LibsModule {
     @Singleton
     org.greenrobot.eventbus.EventBus providesLibraryEventBus(){
         return org.greenrobot.eventbus.EventBus.getDefault();
+    }
+
+    @Provides
+    @Singleton
+    CustomTwitterApiClient providesCustomTwitterApiClient(TwitterSession session) {//
+        return new CustomTwitterApiClient(session);
+    }
+
+    @Provides
+    @Singleton
+    TwitterSession providesTwitterSession() {//
+        return TwitterCore.getInstance().getSessionManager().getActiveSession();
     }
 
 }

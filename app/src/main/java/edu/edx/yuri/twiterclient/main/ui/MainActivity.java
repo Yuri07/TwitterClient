@@ -16,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import edu.edx.yuri.twiterclient.LoginActivity;
 import edu.edx.yuri.twiterclient.R;
-import edu.edx.yuri.twiterclient.hashtags.HashtagsFragment;
+import edu.edx.yuri.twiterclient.hashtags.ui.HashtagsFragment;
 import edu.edx.yuri.twiterclient.images.ui.ImagesFragment;
 import edu.edx.yuri.twiterclient.main.ui.adpaters.MainSectionsPageAdapter;
 

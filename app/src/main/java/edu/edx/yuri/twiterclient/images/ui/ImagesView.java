@@ -1,6 +1,5 @@
 package edu.edx.yuri.twiterclient.images.ui;
 
-
 import java.util.List;
 
 import edu.edx.yuri.twiterclient.entities.Image;

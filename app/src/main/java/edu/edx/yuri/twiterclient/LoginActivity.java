@@ -40,10 +40,14 @@ public class LoginActivity extends AppCompatActivity {
             public void success(Result<TwitterSession> result) {
                 // Do something with result, which provides a TwitterSession for making API calls
                 navigateToMainScreen();
+
                 /*TwitterSession session = TwitterCore.getInstance().getSessionManager().getActiveSession();
                 TwitterAuthToken authToken = session.getAuthToken();
                 String token = authToken.token;
                 String secret = authToken.secret;*/
+
+
+                //TwitterCore.getInstance().getSessionManager().getActiveSession().getUserName()
 
             }
 

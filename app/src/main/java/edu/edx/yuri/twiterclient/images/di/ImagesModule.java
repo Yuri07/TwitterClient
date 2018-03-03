@@ -71,6 +71,7 @@ public class ImagesModule {
     ImagesView providesImagesView(){
         return this.imagesView;
     }
+
     @Provides
     @Singleton
     ImagesInteractor providesImagesInteractor(ImagesRepository repository){
@@ -83,7 +84,7 @@ public class ImagesModule {
         return new ImagesRepositoryImpl(eventBus, client);
     }
 
-    @Provides
+    /*@Provides
     @Singleton
     CustomTwitterApiClient providesCustomTwitterApiClient(TwitterSession session){
         return new CustomTwitterApiClient(session);
@@ -93,8 +94,7 @@ public class ImagesModule {
     @Singleton
     TwitterSession providesTwitterSession(){
         return TwitterCore.getInstance().getSessionManager().getActiveSession();
-        /*assuming that since it´s already active, this
-        is not going to be null*/
-    }
+        //assuming that since it´s already active, this is not going to be null
+    }*/
 
 }

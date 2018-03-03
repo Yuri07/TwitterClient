@@ -1,4 +1,4 @@
-package edu.edx.yuri.twiterclient.images.ui;
+package edu.edx.yuri.twiterclient.hashtags.ui;
 
 
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,33 +24,32 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import edu.edx.yuri.twiterclient.AndroidApplication;
 import edu.edx.yuri.twiterclient.R;
-import edu.edx.yuri.twiterclient.entities.Image;
-import edu.edx.yuri.twiterclient.images.ImagesPresenter;
-import edu.edx.yuri.twiterclient.images.di.ImagesComponent;
-import edu.edx.yuri.twiterclient.images.ui.adapters.ImagesAdapter;
-import edu.edx.yuri.twiterclient.images.ui.adapters.OnItemClickListener;
+import edu.edx.yuri.twiterclient.entities.Hashtag;
+import edu.edx.yuri.twiterclient.hashtags.HashtagsPresenter;
+import edu.edx.yuri.twiterclient.hashtags.di.HashtagsComponent;
+import edu.edx.yuri.twiterclient.hashtags.ui.adapters.HashtagsAdapter;
+import edu.edx.yuri.twiterclient.hashtags.ui.adapters.OnHashtagClickListener;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ImagesFragment extends Fragment implements ImagesView, OnItemClickListener {
+public class HashtagsFragment extends Fragment implements HashtagsView, OnHashtagClickListener {
 
 
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-    Unbinder unbinder;
     @BindView(R.id.container)
     FrameLayout container;
+    Unbinder unbinder;
 
     @Inject
-    ImagesPresenter presenter;
+    HashtagsAdapter adapter;
     @Inject
-    ImagesAdapter adapter;
+    HashtagsPresenter presenter;
 
-
-    public ImagesFragment() {
+    public HashtagsFragment() {
         // Required empty public constructor
     }
 
@@ -60,53 +59,34 @@ public class ImagesFragment extends Fragment implements ImagesView, OnItemClickL
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_content, container, false);
         unbinder = ButterKnife.bind(this, view);
+
         setupInjection();
         setupRecyclerView();
-        presenter.getImagesTweets();
+        presenter.getHashtagTweets();
+
         return view;
     }
 
     private void setupInjection() {
         AndroidApplication app = (AndroidApplication)getActivity().getApplication();
-        ImagesComponent imagesComponent = app.getImagesComponent(this, this, this);
-
-        /*I could use inject or explicitly write a method for each one
-        of the elements that I´m injecting.
-        //(presenter = imagesComponent.getPresenter()[sem as anotacoes @inject em presenter];)*/
-        imagesComponent.inject(this);
-
+        HashtagsComponent hashtagsComponent = app.getHashtagsComponent(this, this);
+        //presenter = imagesComponent.getPresenter();
+        hashtagsComponent.inject(this);
     }
 
     private void setupRecyclerView() {
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        presenter.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        presenter.onPause();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        //presenter.onDestroy();
-    }
-
-    @Override
-    public void showImages() {
+    public void showItems() {
         recyclerView.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void hideImages() {
+    public void hideItems() {
         recyclerView.setVisibility(View.GONE);
     }
 
@@ -128,24 +108,15 @@ public class ImagesFragment extends Fragment implements ImagesView, OnItemClickL
     }
 
     @Override
-    public void setContent(List<Image> items) {
+    public void setContent(List<Hashtag> items) {
         adapter.setItems(items);
     }
 
     @Override
-    public void onItemClick(Image image) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(image.getTweetUrl()));/*in this case we're going to create a new
-                                                                                        intent, it's an implicit intent to launch
-                                                                                        a browser, that's why I'm using action
-                                                                                          view,*/
+    public void onItemClick(Hashtag hashtag) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(hashtag.getTweetURL()));
         startActivity(intent);
     }
-
-    /*@Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        null.unbind();
-    }*/
 
     @Override
     public void onDestroyView() {
